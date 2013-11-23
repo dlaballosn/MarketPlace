@@ -20,6 +20,6 @@ LogginController = function()
 		var repeatPassword = $('#repeatPasswordLoggin').val();
 		var accountType = $('#accountType').val();
 		
-		$.mobile.changePage("finder.html");
+		$.mobile.changePage("seller/products.html");
 	}
 };

@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MarketPlace</title>
+    
+     <!--JS-->
+    <script type="text/javascript" src="../../js/libraries/jquery.js"></script>
+    <script type="application/javascript" src="../../js/libraries/cordova.js"></script>
+    <script type="application/javascript" src="../../js/libraries/jquery.mobile-1.3.2.js"></script>
+    <script type="text/javascript" src="../../js/GlobalVars.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="../../js/controllers/LogginController.js"></script>
+    <script type="text/javascript" src="../../js/controllers/FinderController.js"></script>
+    
+    <!--Listeners-->
+    <script type="text/javascript" src="../../js/listeners/LogginListener.js"></script>
+    <script type="text/javascript" src="../../js/listeners/FinderListener.js"></script>
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="../../css/themes/default/jquery.mobile-1.3.2.css"/>
+    
+</head>
+
+<body>
+	
+    <div data-role="page" id="finderPage">
+    	<div data-role="panel" id="categoriesPanel" data-theme="d" style="text-align:center;">
+        	<h4>CATEGORIES</h4>
+    		<ul data-role="listview" id="listViewCategoriesPanel" data-inset="false" style="text-align:center" data-split-icon="check" data-split-theme="b">
+                <li name="all"><a href="#">All<a href="#">Selected Category</a></a></li>
+    			<li name="computer">Computer</li>
+                <li name="books">Books</li>
+                <li name="music">Music</li>
+			</ul>
+		</div> 
+        <input type="hidden" id="selectedCategory" value="all"/>
+           	
+	<div data-role="header" data-theme="b" position="fixed" data-fullscreen="true" data-id="marketplace">
+        	<a href="#categoriesPanel" data-role="button" data-icon="grid" data-iconpos="notext"></a>
+            <h1>MarkerPlace</h1>
+        </div>
+        <div data-role="content">
+        	<input id="searchProduct" type="search"/><br/>
+            
+            <ul data-role="listview" data-inset="false" id="searchList" style="display:none;">
+    			<li>
+                	<a href="#">
+                    	<img src="../../img/pruebas/iphone.jpg">
+        				<h2>iPhone6</h2>
+        				<p><strong>Store: </strong> Hispaworks</p>
+                        <p><strong>Price: </strong> 234€</p>
+                    	<p class="ui-li-aside" style="color:green">2m</p>
+                        <a href="#">Add to Wishlist</a>
+                    </a>
+    			</li>
+                <li>
+                	<a href="#">
+                    	<img src="../../img/pruebas/iphone.jpg">
+        				<h2>iPhone6</h2>
+        				<p><strong>Store: </strong> Hispaworks</p>
+                        <p><strong>Price: </strong> 234€</p>
+                    	<p class="ui-li-aside" style="color:red">24m</p>
+                        <a href="#">Add to Wishlist</a>
+                    </a>
+    			</li>
+                <li>
+                	<a href="#">
+                    	<img src="../../img/pruebas/iphone.jpg">
+        				<h2>iPhone6</h2>
+        				<p><strong>Store: </strong> Hispaworks</p>
+                        <p><strong>Price: </strong> 234€</p>
+                    	<p class="ui-li-aside" style="color:red">2km</p>
+                        <a href="#">Add to Wishlist</a>
+                    </a>
+    			</li>
+                <li>
+                	<a href="#">
+                    	<img src="../../img/pruebas/iphone.jpg">
+        				<h2>iPhone6</h2>
+        				<p><strong>Store: </strong> Hispaworks</p>
+                        <p><strong>Price: </strong> 234€</p>
+                    	<p class="ui-li-aside" style="color:red">2km</p>
+                        <a href="#">Add to Wishlist</a>
+                    </a>
+    			</li>
+                <li>
+                	<a href="#">
+                    	<img src="../../img/pruebas/iphone.jpg">
+        				<h2>iPhone6</h2>
+        				<p><strong>Store: </strong> Hispaworks</p>
+                        <p><strong>Price: </strong> 234€</p>
+                    	<p class="ui-li-aside" style="color:red">2km</p>
+                        <a href="#">Add to Wishlist</a>
+                    </a>
+    			</li>
+           </ul>
+           
+        </div>
+        <div data-role="footer" data-theme="b" data-position="fixed" id="finderFooter">
+        	<div data-role='navbar'>
+            	<ul>
+                	<li><a href='#'  class='ui-btn-active ui-state-persist' data-icon='home' data-iconpos='notext'>FIND</a></li>
+                    <li><a href='#' data-icon='home' data-iconpos='notext'>Stores</a></li>
+                    <li><a href='#' data-icon='gear' data-iconpos='notext'>Products</a></li>
+                    <li><a href='#' data-icon='arrow-d' data-iconpos='notext'>Settings</a></li>
+            	</ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
