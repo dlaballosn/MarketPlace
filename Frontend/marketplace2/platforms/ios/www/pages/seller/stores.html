@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MarketPlace</title> 
+     
+     <!--JS-->
+    <script type="text/javascript" src="../../js/libraries/jquery.js"></script>
+    <script type="application/javascript" src="../../cordova.js"></script>
+    <script type="application/javascript" src="../../js/libraries/jquery.mobile-1.3.2.js"></script>
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="../../css/themes/default/jquery.mobile-1.3.2.css"/>
+    
+</head>
+<body>
+	<div data-role="page" id="storesPage">
+    	<div data-role="header">
+        	<h1>MarketPlace</h1>
+            <a href="dialogs/addstore.html" data-transition="fade" id="addStore" data-rel="dialog" class="ui-btn-right">Add</a>
+        </div>
+        <div data-role="content">
+        	<ul data-role="listview" data-filter="true" data-filter-placeholder="Filter products..." data-inset="false">
+               <li><a href="#">Hispaworks</a></li>
+               <li><a href="#">Starlab</a></li>
+               <li><a href="#">Starlab</a></li>
+               <li><a href="#">Starlab</a></li>
+            </ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+        	<div data-role='navbar'>
+            	<ul>   
+                	<li><a href='#' class='ui-btn-active ui-state-persist' data-icon='home' data-iconpos='notext'>Stores</a></li>
+                    <li><a href='products.html' data-icon='gear' data-iconpos='notext'>Products</a></li>
+                    <li><a href='#' data-icon='arrow-d' data-iconpos='notext'>Settings</a></li>
+            	</ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

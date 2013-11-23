@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MarketPlace</title>
+    
+    <!--JS-->
+    <script type="text/javascript" src="../js/libraries/jquery.js"></script>
+    <script type="application/javascript" src="../cordova.js"></script>
+    <script type="application/javascript" src="../js/libraries/jquery.mobile-1.3.2.js"></script>
+    <script type="text/javascript" src="../js/GlobalVars.js"></script>
+    
+	<script type="application/javascript" src="../js/ConnectionLib.js"></script>
+    <!--Controllers-->
+    <script type="text/javascript" src="../js/controllers/LogginController.js"></script>
+    <script type="text/javascript" src="../js/controllers/FinderController.js"></script>
+    <script type="text/javascript" src="../js/controllers/ProductController.js"></script>
+    <script type="text/javascript" src="../js/controllers/StoresController.js"></script>
+    
+    
+    <!--Listeners-->
+    <script type="text/javascript" src="../js/listeners/LogginListener.js"></script>
+    <script type="text/javascript" src="../js/listeners/FinderListener.js"></script>
+    <script type="text/javascript" src="../js/listeners/ProductsListener.js"></script>
+    <script type="text/javascript" src="../js/listeners/StoresListener.js"></script>
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.3.2.css"/>
+    
+    
+</head>
+
+<body>
+	<div id="logginPage" data-role="page" data-theme="b">
+        <div data-role="content">
+        	
+            <!--ACCOUNT LOGO-->
+            <div style="text-align:center">
+            	<img src="../img/loggin/marketplace.png" width="100px" height="100px"/>
+            </div>
+            
+            <!--SELECT ACCOUNT TYPE-->
+            <div data-role="navbar">
+    			<ul>
+        			<li><a href="#" id="buyerAccount">Buyer</a></li>
+        			<li><a href="#" id="sellerAccount">Seller</a></li>
+    			</ul>
+                <input type="hidden" id="accountType" value=""/>
+			</div>
+            
+            <!--  INFO-->
+            <div id="logginInfo" style="display:none;">
+            	<div data-role="fieldcontain">
+    				<label for="emailLoggin">Email: </label>
+    				<input type="email" name="emailLoggin" id="emailLoggin" placeholder="email@marketplace.com"/>
+				</div>
+            	<div data-role="fieldcontain">
+    				<label for="usernameLoggin">Username: </label>
+    				<input type="text" name="usernameLoggin" id="usernameLoggin" placeholder="Username"/>
+				</div>
+                <div data-role="fieldcontain">
+    				<label for="passwordLoggin">Password: </label>
+    				<input type="password" name="passwordLoggin" id="passwordLoggin" placeholder="********"/>
+				</div>
+                <div data-role="fieldcontain">
+    				<label for="repeatPasswordLoggin">Repeat Password: </label>
+    				<input type="password" name="repeatPasswordLoggin" id="repeatPasswordLoggin" placeholder="********"/>
+				</div> 
+                <button id="submitLoggin">Submit</button>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
