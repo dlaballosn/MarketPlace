@@ -12,6 +12,7 @@ class Image(models.Model):
                                 processors=[ResizeToFit(460)],
                                 format='JPEG',
                                 options={'quality': 60})
+    recognizeim_key = models.CharField(max_length=30, null=True, blank=True)
 
 
 class User(models.Model):
@@ -32,8 +33,9 @@ class Buyer(User):
 
 class Store(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ForeignKey("Image")
-    location = models.PointField(srid=4326, null=True, blank=True)
+    image = models.ForeignKey("Image", blank=True, null=True)
+    location = models.PointField(srid=4326)
+    owner = models.ForeignKey("Seller")
     objects = models.GeoManager()
 
 

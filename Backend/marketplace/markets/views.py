@@ -2,8 +2,10 @@
 from django.http import HttpResponse
 import simplejson
 from django.views.generic.base import View
-from models import Seller, Buyer
+from models import Seller, Buyer, ProductInStore
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.gis.measure import D
+from django.contrib.gis.geos import Point, LinearRing, fromstr
 
 
 class JSONResponse(object):
@@ -72,6 +74,31 @@ class UserView(JSONResponse, View):
     def dispatch(self, *args, **kwargs):
         return super(UserView, self).dispatch(*args, **kwargs)
 
+
+class ProductListView(JSONResponse, View):
+    def get(self, request, *args):
+        #latlon = request.GET['latlon'].split(",")
+        latlon = ["41.3879", "2.1715"]
+        keyword = request.GET['keyword']
+        category = request.GET['category']
+        pnt = fromstr('POINT(%s %s)' % (latlon[0], latlon[1]), srid=4326)
+        products = ProductInStore.objects.filter(store__location__distance_lte=(pnt, D(km=7)))
+
+
+class PhotoView(JSONResponse, View):
+    def post(self, request, *args):
+        import os
+        import base64
+        try:
+            id = Photo.objects.all()[0].id + 1
+        except:
+            id = 1
+        filename = "img%d.jpg" % id
+        tmpFileName = os.path.join("/tmp/", filename)
+        tmpFile = open(tmpFileName, 'wb')
+        data = base64.b64decode(request.POST['data'])
+        tmpFile.write(data)
+        tmpFile.close()
 
 
 """
