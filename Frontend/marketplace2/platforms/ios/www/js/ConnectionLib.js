@@ -68,3 +68,16 @@ var Photo = function(){
                                callback);
     }
 }
+
+
+var Store = function(){
+    var connection = new Connector();
+
+    this.createStore = function(name, location, owner, callback){
+        connection.makeRequest({name:name, location:location, owner:owner},
+                               "/store/",
+                               "POST",
+                               callback)
+    }
+
+}

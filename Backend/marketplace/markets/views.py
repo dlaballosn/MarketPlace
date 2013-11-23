@@ -1,11 +1,15 @@
 # Create your views here.
 from django.http import HttpResponse
 import simplejson
+from django.conf import settings
 from django.views.generic.base import View
-from models import Seller, Buyer, ProductInStore
+from models import Seller, Buyer, ProductInStore, Image, Order, Wishlist, Store
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.gis.measure import D
 from django.contrib.gis.geos import Point, LinearRing, fromstr
+from recognizeim import recognizeApi
+import base64
+from django import forms
 
 
 class JSONResponse(object):
@@ -87,18 +91,84 @@ class ProductListView(JSONResponse, View):
 
 class PhotoView(JSONResponse, View):
     def post(self, request, *args):
-        import os
-        import base64
         try:
-            id = Photo.objects.all()[0].id + 1
+            id = Image.objects.all()[0].id + 1
         except:
             id = 1
-        filename = "img%d.jpg" % id
-        tmpFileName = os.path.join("/tmp/", filename)
+        filename = "tmpimg%d.jpg" % id
+        tmpFileName = settings.MEDIA_ROOT + "tmp/" + filename
         tmpFile = open(tmpFileName, 'wb')
         data = base64.b64decode(request.POST['data'])
         tmpFile.write(data)
         tmpFile.close()
+        image = Image(file_name=tmpFileName)
+        image.save()
+        api = recognizeApi('42415', '6cd473ba37', '0bfa4a64a51c8e61d971c6b9745c1883')
+        recognize = api.recognize(tmpFileName)
+        context = {"success": True, "recognized": recognize, "id": image.id}
+        return self.render_to_json_response(context)
+
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(PhotoView, self).dispatch(*args, **kwargs)
+
+
+class WishlistView(JSONResponse, View):
+    def post(self, request, *args):
+        user = request.POST["user_id"]
+        name = request.POST["name"]
+
+
+class ProductWishlistAdd(JSONResponse, View):
+    def post(self, request, *args):
+        product_id = request.POST["product_id"]
+        wishlist_id = request.POST["wishlist_id"]
+        wishlist = Wishlist.objects.get(id=wishlist_id)
+        product = ProductInStore.objects.get(id=product_id)
+        wishlist.products.add(product)
+        wishlist.save()
+        success = True
+        context = {"success": success}
+        return self.render_to_json_response(context)
+
+
+class ProductView(JSONResponse, View):
+    def post(self, request, *args):
+        name =
+        category =
+        image_id =
+
+
+class OrderListView(JSONResponse, View):
+    def get(self, request, *args):
+        store_id = request.GET['store_id']
+        orders = Order.objects.filter(product__store__id=store_id)
+        success = True
+        context = {"success": success, "orders": orders}
+        return self.render_to_json_response(context)
+
+
+class StoreView(JSONResponse, View):
+    def post(self, request, *args):
+        name = request.POST['name']
+        owner = request.POST['owner']
+        latlon = request.POST['location'].split(",")
+        owner = Seller.objects.get(id=owner)
+        location = fromstr('POINT(%s %s)' % (latlon[0], latlon[1]), srid=4326)
+        s = Store(name=name, owner=owner, location=location)
+        s.save()
+        success = True
+        context = {"success": success, "id": s.id}
+        return self.render_to_json_response(context)
+
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(PhotoView, self).dispatch(*args, **kwargs)
+
+
+class OrderView(JSONResponse, View):
+    def get(self, request, *args):
+        order_id = request.GET['order_id']
 
 
 """

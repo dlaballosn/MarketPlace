@@ -8,11 +8,11 @@ class Category(models.Model):
 
 
 class Image(models.Model):
-    image = ProcessedImageField(upload_to=settings.UPLOAD_DIR+"images",
-                                processors=[ResizeToFit(460)],
-                                format='JPEG',
-                                options={'quality': 60})
+    file_name = models.CharField(max_length=150)
     recognizeim_key = models.CharField(max_length=30, null=True, blank=True)
+
+    def get_path(self):
+        return "http://mp.clsweb.webfactional.com/static/tmp/" + self.file_name.split("/")[-1]
 
 
 class User(models.Model):
@@ -53,6 +53,7 @@ class ProductInStore(models.Model):
 
 
 class Wishlist(models.Model):
+    name = models.CharField(max_length=30, default="My wishlist")
     buyer = models.ForeignKey("Buyer")
     products = models.ManyToManyField("ProductInStore")
 
