@@ -1,4 +1,3 @@
-
 var Connector = function(){
 
     this.server_url = "http://mp.clsweb.webfactional.com/market";

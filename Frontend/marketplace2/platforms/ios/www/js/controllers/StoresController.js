@@ -2,12 +2,18 @@ StoresController = function()
 {
 	var storeName = "";
 	
+	var onStoreCreated = function()
+	{
+		$('.ui-dialog').dialog('close');
+	}
+	
 	var onGeolocationSuccess = function(position)
 	{
 		var lat = position.coords.latitude;
 		var lon = position.coords.longitude;
 		
-		alert(lat + " " + lon + " " + storeName + " " + GlobalVars.owner);
+		var storeManager = new Store();
+		storeManager.createStore(storeName, lat + ',' + lon, GlobalVars.owner, onStoreCreated);
 	}
 	
 	var onGeolocationFail = function(err)
