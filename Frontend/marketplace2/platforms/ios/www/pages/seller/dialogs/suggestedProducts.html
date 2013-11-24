@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MarketPlace</title> 
+     
+     <!--JS-->
+    <script type="text/javascript" src="../../../js/libraries/jquery.js"></script>
+    <script type="application/javascript" src="../../../cordova.js"></script>
+    <script type="application/javascript" src="../../../js/libraries/jquery.mobile-1.3.2.js"></script>
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="../../../css/themes/default/jquery.mobile-1.3.2.css"/>
+    
+</head>
+<body>
+	<div data-role="page" id="suggestedProductsPage">
+    	<div data-role="header">
+        	<h1>SUGGESTED PRODUCTS</h1>
+        </div>
+        <div data-role="content">
+              
+              <ul data-role="listview" id="listProduct">
+              	<li>
+                    <img src="" id="product_image"/>
+                    <h2 id="product_name"></h2> 
+                </li>
+              </ul>
+              <br/>
+              <br/>
+              
+              <label>Category: </label>
+              <input id="product_category" readonly="readonly" type="text"/>
+              <br/>
+              
+              <label>Description: </label>
+              <textarea id="product_description" readonly="readonly" type="text"></textarea>
+              <br/>
+              
+              <label>Price: </label>
+              <input id="product_price" type="text"/>
+              <br/>
+              
+              <button>Add Product</button>
+              
+              <!--
+              <img style="float:left; width: 28%" src="" id="product_image">
+              <div style="float:right; width: 70%">
+              	<h3>Name</h3>
+                <p id="product_name"></p>
+                <h3>Category</h3>
+                <p id="product_category"></p>
+                <h3>Description</h3>
+                <p id="product_description"></p>
+              </div>-->
+        </div>
+        <div data-role="footer">
+        </div>
+    </div>
+</body>
+</html>
