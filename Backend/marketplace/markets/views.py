@@ -131,12 +131,14 @@ class ProductWishlistAdd(JSONResponse, View):
         context = {"success": success}
         return self.render_to_json_response(context)
 
-
+"""
 class ProductView(JSONResponse, View):
     def post(self, request, *args):
-        name =
-        category =
-        image_id =
+        name = request.POST["name"]
+        category = request.POST["category"]
+        image_id = request.POST["image_id"]
+"""
+
 
 
 class OrderListView(JSONResponse, View):
@@ -161,9 +163,17 @@ class StoreView(JSONResponse, View):
         context = {"success": success, "id": s.id}
         return self.render_to_json_response(context)
 
+    def get(self, request, *args):
+        owner = request.GET['owner']
+        owner = Seller.objects.get(id=owner)
+        stores = Store.objects.filter(owner=owner)
+        stores = [{"name": s.name, "id": s.id} for s in stores]
+        context = {"stores": stores}
+        return self.render_to_json_response(context)
+
     @csrf_exempt
     def dispatch(self, *args, **kwargs):
-        return super(PhotoView, self).dispatch(*args, **kwargs)
+        return super(StoreView, self).dispatch(*args, **kwargs)
 
 
 class OrderView(JSONResponse, View):

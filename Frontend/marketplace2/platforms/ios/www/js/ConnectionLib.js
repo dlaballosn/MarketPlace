@@ -79,4 +79,11 @@ var Store = function(){
                                callback)
     }
 
+    this.getStores = function(owner, callback){
+        connection.makeRequest({owner: owner},
+                               "/store/",
+                               "GET",
+                               callback)
+    }
+
 }
